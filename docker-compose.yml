@@ -19,6 +19,7 @@ services:
       EXCHANGE_ORIGIN: https://coinbase.com
       EXCHANGE_PROTOCOL:
       EXCHANGE_SYMBOLS: ETH-BTC,BTC-USD,BTC-EUR
+      EXCHANGE_CHANNELS: ticker
     restart: unless-stopped
     depends_on:
       mysql:

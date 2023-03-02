@@ -21,7 +21,7 @@ lint: ## Check code (used golangci-lint)
 	GO111MODULE=on golangci-lint run
 
 # include env vars
-include .env
+include .env.local
 export
 
 test: ## Run tests
