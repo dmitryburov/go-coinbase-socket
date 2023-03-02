@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+    environment:
+      # logger
+      LOGGER_CALLER: 0
+      LOGGER_STACKTRACE: 1
+      LOGGER_LEVEL: debug
+      # database
+      DB_HOST: mysql:3306
+      DB_USER: test_mysql
+      DB_PASSWORD: a2s_kjlasjd
+      DB_BASE: test
+      # exchange
+      EXCHANGE_URL: wss://ws-feed.exchange.coinbase.com
+      EXCHANGE_ORIGIN: https://coinbase.com
+      EXCHANGE_PROTOCOL:
+      EXCHANGE_SYMBOLS: ETH-BTC,BTC-USD,BTC-EUR
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - local
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: test_mysql
+      MYSQL_PASSWORD: a2s_kjlasjd
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: s3dkfU_ALkj1
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      # Be careful! It's public port only for test. Remove this block if run in production.
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mysql-db:/var/lib/mysql
+      - ./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
+
+volumes:
+  mysql-db:
