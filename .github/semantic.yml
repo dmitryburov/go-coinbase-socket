@@ -1,0 +1,11 @@
+# Always validate the PR title AND all the commits
+titleAndCommits: true
+# Allows use of Merge commits (eg on github: "Merge branch 'master' into feature/ride-unicorns")
+# this is only relevant when using commitsOnly: true (or titleAndCommits: true)
+allowMergeCommits: true
+# If the PR only contains a single commit, the action will validate that
+# it matches the configured pattern.
+validateSingleCommit: true
+# Related to `validateSingleCommit` you can opt-in to validate that the PR
+# title matches a single commit to avoid confusion.
+validateSingleCommitMatchesPrTitle: true
