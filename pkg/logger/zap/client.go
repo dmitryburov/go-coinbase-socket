@@ -37,7 +37,6 @@ func (l *client) InitLogger() {
 	encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
 
 	// write syncers
-	//stdoutSyncer := zapcore.Lock(os.Stdout)
 	stderrSyncer := zapcore.Lock(os.Stderr)
 
 	l.logger = zap.New(
@@ -46,7 +45,7 @@ func (l *client) InitLogger() {
 			zap.NewAtomicLevelAt(logLevel)),
 		zap.AddCaller(),
 		zap.AddStacktrace(zapcore.LevelOf(zap.ErrorLevel)),
-		zap.AddCallerSkip(2)).
+		zap.AddCallerSkip(1)).
 		Sugar()
 
 	if err := l.logger.Sync(); err != nil && !errors.Is(err, syscall.ENOTTY) {

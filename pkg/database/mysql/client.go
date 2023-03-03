@@ -12,13 +12,12 @@ type client struct {
 
 // NewMysqlClient init client for mysql database
 func NewMysqlClient(host, username, password, base string) (*client, error) {
-
 	db, err := sqlx.Connect("mysql", fmt.Sprintf("%s:%s@(%s)/%s", username, password, host, base))
 	if err != nil {
 		return nil, err
 	}
 
-	if err := db.Ping(); err != nil {
+	if err = db.Ping(); err != nil {
 		return nil, err
 	}
 
