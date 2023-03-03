@@ -37,8 +37,15 @@ func (c *client) WriteData(message []byte) (int, error) {
 	return c.Write(message)
 }
 
-func (c *client) ReadData(data []byte) (int, error) {
-	return c.Read(data)
+func (c *client) ReadData() ([]byte, error) {
+	var message = make([]byte, 512) //TODO need change global? 1MB
+
+	n, err := c.Read(message)
+	if err != nil {
+		return nil, err
+	}
+
+	return message[:n], nil
 }
 
 func (c *client) CloseConnection() error {

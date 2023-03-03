@@ -66,7 +66,7 @@ func (c *client) Run(ctx context.Context) error {
 		return err
 	}
 
-	message, err := c.readMessage()
+	message, err := c.conn.ReadData()
 	if err != nil {
 		c.logger.Error(err)
 		return err
@@ -97,25 +97,13 @@ func (c *client) Run(ctx context.Context) error {
 	return nil
 }
 
-// readMessage from socket response
-func (c *client) readMessage() ([]byte, error) {
-	var message = make([]byte, 1024*1024) //TODO need change global? 1MB
-
-	n, err := c.conn.ReadData(message)
-	if err != nil {
-		return nil, err
-	}
-
-	return message[:n], nil
-}
-
 // responseReader write to symbol channel from response socket data
 func (c *client) responseReader(symbol string, hMap map[string]chan entity.Ticker) error {
 	var mu = sync.Mutex{}
 	var tickData *coinbase.Response
 
 	for {
-		message, err := c.readMessage()
+		message, err := c.conn.ReadData()
 		if err != nil {
 			if errors.Is(err, net.ErrClosed) {
 				break

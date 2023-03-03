@@ -7,5 +7,5 @@ type Manager interface {
 	// WriteData command write data to exchange connection
 	WriteData(message []byte) (int, error)
 	// ReadData command is reading from receiver data
-	ReadData(data []byte) (int, error)
+	ReadData() ([]byte, error)
 }
