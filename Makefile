@@ -20,13 +20,14 @@ deps: ## Download dependencies
 lint: ## Check code (used golangci-lint)
 	GO111MODULE=on golangci-lint run
 
-# include env vars
-include .env.local
-export
 
 test: ## Run tests
 	go clean --testcache
 	go test ./...
+
+# include env vars
+include .env.local
+export
 
 run: ## Run application local
 	go run cmd/app/main.go
