@@ -27,3 +27,11 @@ test: ## Run tests
 
 run: ## Run application local
 	go run cmd/app/main.go
+
+release: ## Git tag create and push
+	git tag -s -a v${tag} -m 'chore(release): v$(tag) [skip ci]'
+	git push origin v${tag}
+
+release.revert: ## Revert git release tag
+	git tag -d v${tag}
+	git push --delete origin v${tag}
