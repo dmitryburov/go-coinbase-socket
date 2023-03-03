@@ -25,9 +25,5 @@ test: ## Run tests
 	go clean --testcache
 	go test ./...
 
-# include env vars
-include .env.local
-export
-
 run: ## Run application local
 	go run cmd/app/main.go
