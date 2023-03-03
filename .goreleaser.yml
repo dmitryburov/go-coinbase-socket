@@ -46,4 +46,4 @@ release:
     ### Present this new release :sweat_drops:
     Please provide feedback in discussions and report bugs on the issue tracker. Thanks!
   footer: |
-    **See all changes**: https://github.com/td-autoprofi/partner-go-services/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **See all changes**: https://github.com/dmitryburov/go-coinbase-socket/compare/{{ .PreviousTag }}...{{ .Tag }}
