@@ -1,5 +1,7 @@
 # Coinbase websocket client on Golang
 
+![IMG](docs/hero.gif)
+
 ## Task
 
 1. Connect to the Coinbase cryptocurrency exchange via WebSocket
