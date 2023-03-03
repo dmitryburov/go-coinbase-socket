@@ -19,12 +19,13 @@ type ResponseType int
 const (
 	Error ResponseType = iota
 	Subscriptions
+	Unsubscribe
 	Heartbeat
 	Ticker
 	Level2
 )
 
-var responseTypeNames = [...]string{"error", "subscriptions", "heartbeat", "ticker", "level2"}
+var responseTypeNames = [...]string{"error", "subscriptions", "unsubscribe", "heartbeat", "ticker", "level2"}
 
 func (r ResponseType) String() string {
 	return responseTypeNames[r]
