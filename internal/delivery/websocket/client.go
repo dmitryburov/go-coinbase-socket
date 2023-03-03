@@ -99,7 +99,7 @@ func (c *client) Run(ctx context.Context) error {
 
 // readMessage from socket response
 func (c *client) readMessage() ([]byte, error) {
-	var message = make([]byte, 1024) //TODO need change global?
+	var message = make([]byte, 1024*1024) //TODO need change global? 1MB
 
 	n, err := c.conn.ReadData(message)
 	if err != nil {
@@ -126,13 +126,14 @@ func (c *client) responseReader(symbol string, hMap map[string]chan entity.Ticke
 
 		tickData, err = coinbase.ParseResponse(message)
 		if err != nil {
+			fmt.Println(string(message))
 			c.logger.Error(err)
 			continue
 		}
 
 		switch tickData.Type {
 		case coinbase.Error:
-			//TODO need break exchange if error?
+			//TODO [critical] need break exchange and show global error?
 			c.logger.Error(err)
 			continue
 		case coinbase.Ticker:

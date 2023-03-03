@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"context"
 	"github.com/dmitryburov/go-coinbase-socket/internal/entity"
 	"github.com/dmitryburov/go-coinbase-socket/internal/repository/mysql"
 	"github.com/jmoiron/sqlx"
@@ -9,7 +10,7 @@ import (
 // Exchange methods implementation
 type Exchange interface {
 	// CreateTick write in storage ticker data
-	CreateTick(ticker entity.Ticker) error
+	CreateTick(ctx context.Context, ticker entity.Ticker) error
 }
 
 // Repositories of based interface for repository layout

@@ -27,11 +27,12 @@ func (e *exchangeService) Tick(ctx context.Context, ch <-chan entity.Ticker) err
 			return nil
 		case v, ok := <-ch:
 			if ok {
-				if err := e.exchange.CreateTick(v); err != nil {
+				if err := e.exchange.CreateTick(ctx, v); err != nil {
+					//TODO [critical] block - what's need?
 					return err
 				}
 
-				e.logger.Info(fmt.Sprintf("write ticker [%s] > time:%d, bid:%f, ask:%f", v.Symbol, v.Timestamp, v.Bid, v.Ask))
+				e.logger.Info(fmt.Sprintf("writed ticker %s > time:%d, bid:%f, ask:%f", v.Symbol, v.Timestamp, v.Bid, v.Ask))
 			} else {
 				return nil
 			}
