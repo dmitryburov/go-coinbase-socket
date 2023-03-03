@@ -2,19 +2,18 @@
 
 ## Task
 
-1. Подключиться по WebSocket, к бирже криптовалют CoinBase;
-2. Подписаться на цены по трем инструментам: ETH-BTC, BTC-USD, BTC-EUR (данные будут приходить в WebSocket по мере их появления на бирже);
-3. Создать таблицу "ticks" в MySql со следующими полями:
-   - timestamp (int64) - время цены
-   - symbol (string) - название инструментам
-   - bid (float64) - цена продажи
-   - ask (float64) - цена покупки;
-4. Подключиться к MySql и записывать в таблицу "ticks" данные полученные по WebSocket;
-5. Записывать данные из трех инструментов (ETH-BTC, BTC-USD, BTC-EUR) в базу данных
-   необходимо в 3 потока (каждому инструменту свой поток записи);
-6. Репозиторий с проектом выложить на github;
-7. Используйте хорошие практики разработки, для возможности дальнейшего расширения
-   функционала приложения.
+1. Connect to the Coinbase cryptocurrency exchange via WebSocket
+2. Subscribe to prices for three instruments: ETH-BTC, BTC-USD, BTC-EUR (data will come in through the WebSocket as they appear on the exchange)
+3. Create a "ticks" table in MySql with the following fields:
+   - timestamp (int64) - price time
+   - symbol (string) - instrument name
+   - bid (float64) - selling price
+   - ask (float64) - buying price
+4. Connect to MySql and write data received through WebSocket to the `ticks` table
+5. Write data from the three instruments (ETH-BTC, BTC-USD, BTC-EUR) to the database
+   in three threads (each instrument has its own write thread)
+6. Publish the project repository on Github
+7. Use good development practices to enable further application functionality expansion
 
 ## How to use
 
@@ -38,7 +37,8 @@ make help
 
 ## TODO
 
-- [ ] Logger points
+- [x] Logger points
+- [ ] Rate limiter
 - [ ] Metric data
 - [ ] Test implemented
 
