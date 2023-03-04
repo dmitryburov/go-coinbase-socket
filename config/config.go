@@ -22,8 +22,8 @@ type LoggerConfig struct {
 // ExchangeConfig for exchange configuration
 type ExchangeConfig struct {
 	Url      string   `env:"URL,required"`
-	Origin   string   `env:"URL,required"`
-	Protocol string   `env:"URL,default="`
+	Origin   string   `env:"ORIGIN,required"`
+	Protocol string   `env:"PROTOCOL,default="`
 	Symbols  []string `env:"SYMBOLS,required"`
 	Channels []string `env:"CHANNELS,required"`
 }
@@ -45,5 +45,4 @@ func NewConfig(ctx context.Context) (*Config, error) {
 	}
 
 	return &cfg, nil
-
 }
