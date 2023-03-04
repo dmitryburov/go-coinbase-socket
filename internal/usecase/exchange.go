@@ -13,6 +13,7 @@ type exchangeService struct {
 	logger   logger.Logger
 }
 
+// NewExchangeService created exchange usecase
 func NewExchangeService(
 	exchange repository.Exchange,
 	logger logger.Logger,

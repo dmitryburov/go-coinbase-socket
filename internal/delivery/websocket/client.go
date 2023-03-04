@@ -49,7 +49,7 @@ func (c *client) Run(ctx context.Context) error {
 
 	for _, symbol := range c.products {
 		hMap[symbol] = make(chan entity.Ticker)
-		// readers
+		// run readers
 		g.Go(func() error {
 			return c.uc.Exchange.Tick(ctx, hMap[symbol])
 		})

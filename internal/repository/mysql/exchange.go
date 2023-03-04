@@ -11,6 +11,7 @@ type exchangeRepo struct {
 	db *sqlx.DB
 }
 
+// NewExchangeRepository created exchange repository
 func NewExchangeRepository(db *sqlx.DB) *exchangeRepo {
 	return &exchangeRepo{db}
 }
