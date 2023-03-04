@@ -41,8 +41,8 @@ make help
 
 - [x] Logger points
 - [ ] Rate limiter
-- [ ] Metric data
-- [ ] Test implemented
+- [ ] Prometheus metrics
+- [ ] Testing
 
 
 ## Resources

@@ -7,7 +7,6 @@ help: ## Show this help
 	@echo "Targets:"
 	@grep -h -E '^[a-zA-Z_-].+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
-
 compose.run: ## Start with docker-compose
 	docker-compose up --build
 
@@ -19,7 +18,6 @@ deps: ## Download dependencies
 
 lint: ## Check code (used golangci-lint)
 	GO111MODULE=on golangci-lint run
-
 
 test: ## Run tests
 	go clean --testcache
